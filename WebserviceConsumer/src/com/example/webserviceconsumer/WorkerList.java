@@ -16,11 +16,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class WorkerList extends Activity {
-	private static final String url = "http://192.168.1.39:8080/kachuelitos2/services/JobOffersList?wsdl";
-	private static final String namespace = "http://192.168.1.39:8080/kachuelitos2/";
+	private static final String url = "http://192.168.0.22:8080/kachuelitos2/services/JobOffersList?wsdl";
+	private static final String namespace = "http://192.168.0.22:8080/kachuelitos2/";
 	private static final String Method_JobOffersList = "JobOffersList";
-	private static final String accionSoap_JobOffersList = "http://192.168.1.39:8080/kachuelitos2/services/JobOffersList";
-
+	private static final String accionSoap_JobOffersList = "http://192.168.0.22:8080/kachuelitos2/services/JobOffersList";
+	private TextView tvrpta;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,8 +31,8 @@ public class WorkerList extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workerlist);
-
-		TextView tvrpta = (TextView)findViewById(R.id.tvRpta1);
+		System.out.print("vaentrarrrrrrrr");
+		tvrpta = (TextView)findViewById(R.id.tvRpta1);
 
 		Intent i = getIntent();
 		String out = "";
@@ -102,6 +102,12 @@ public class WorkerList extends Activity {
 				e.printStackTrace();
 			}
 			return out;
+			}
+		@Override
+		protected void onPostExecute(String result) {
+			// execution of result of Long time consuming operation
+			// In this example it is the return value from the web service
+			tvrpta.setText(result);
 			}
 
 		}
